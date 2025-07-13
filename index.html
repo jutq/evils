@@ -356,6 +356,13 @@ function updateClock() {
   }
 
   animateTitle();
+  document.body.addEventListener('click', function startMusic() {
+  const music = document.getElementById('bg-music');
+  music.play().catch(() => {
+  });
+  document.body.removeEventListener('click', startMusic);
+});
+
 </script>
 </body>
 </html>
