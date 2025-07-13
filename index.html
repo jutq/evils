@@ -1,10 +1,357 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Benim GitHub Sitem</title>
-  </head>
-  <body>
-    <h1>Hoş geldiniz!</h1>
-    <p>Bu site GitHub Pages ile yayınlanmıştır.</p>
-  </body>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>nvn - evils.us</title>
+<link rel="icon" href="favicon.png" type="image/x-icon">
+<style>
+  :root {
+    --primary-color: #ff3c3c;
+  }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: black;
+  overflow-x: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--primary-color);
+  position: relative;
+}
+
+
+  #matrix {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    display: block;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #title-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 10px;
+  }
+
+  #animated-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    white-space: nowrap;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
+    letter-spacing: 0.05em;
+  }
+
+  h2.links-title {
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 8px;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .links a,
+  .payments-button {
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+    border: 1px solid var(--primary-color);
+    color: #ff6666;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0;
+    text-shadow: 0 0 5px var(--primary-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .links a:hover,
+  .payments-button:hover {
+    color: #fff;
+    background-color: #ff1a1a;
+    box-shadow: 0 0 10px var(--primary-color), 0 0 20px #ff1a1a, 0 0 30px var(--primary-color);
+    text-shadow: 0 0 8px #fff;
+  }
+
+  .payments-wrapper {
+    position: relative;
+  }
+
+  .payments-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(20, 20, 20, 0.95);
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    margin-top: 5px;
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  .payments-wrapper:hover .payments-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .payments-menu span {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 5px 3px;
+    background-color: #1a1a1a;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    color: #ff6666;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: default;
+    text-shadow: 0 0 4px var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .box {
+    background-color: rgba(20, 20, 20, 0.85);
+    border: 1px solid var(--primary-color);
+    border-radius: 0;
+    padding: 20px;
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+
+  p, li {
+    text-shadow: 0 0 3px var(--primary-color);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  footer {
+    border-top: 1px solid var(--primary-color);
+    padding: 15px 0;
+    font-size: 14px;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
+  }
+
+  #clock {
+    font-weight: bold;
+    float: right;
+    margin-right: 20px;
+  }
+
+  #status-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.95);
+    border-top: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 0;
+    text-shadow: 0 0 8px var(--primary-color);
+    z-index: 9999;
+    user-select: none;
+    letter-spacing: 1px;
+  }
+
+  #ip, #location {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+  <div id="title-wrapper">
+    <h1 id="animated-title"></h1>
+  </div>
+
+  <h2 class="links-title">~/links/</h2>
+  <div class="links">
+    <a href="https://github.com/jutq" target="_blank">GitHub</a>
+    <a href="https://oguser.com/nvns" target="_blank">OGUser</a>
+    <a href="https://t.me/thring" target="_blank">Telegram</a>
+    <a href="https://discord.com/users/791591797855617055" target="_blank">Discord</a>
+    <a href="https://t.me/SuretyLink" target="_blank">Telegram Vouches</a>
+    <a href="https://t.me/s2ller" target="_blank">Stock</a>
+
+    <div class="payments-wrapper">
+      <div class="payments-button">Payments</div>
+      <div class="payments-menu">
+        <span>Bitcoin</span>
+        <span>Ethereum</span>
+        <span>Solana</span>
+        <span>USDT</span>
+        <span>Monero</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>~/about_me.txt</h2>
+    <p>Hello, I am a software developer. I'm interested in all kinds of code development and cyber.</p>
+  </div>
+
+  <div class="box">
+    <h2>~/shop.txt</h2>
+    <p>Coming soon..</p>
+  </div>
+
+  <footer>
+    2025 - ∞︎︎ • Made with 𖤍 by nvn <span id="clock"></span>
+  </footer>
+</div>
+
+<div id="status-bar">
+  CONNECTED <span id="ip">IP: ...</span> | <span id="location">LOCATION: ...</span> | STATUS: SECURE
+</div>
+
+<script>
+  const matrix = document.getElementById('matrix');
+  const ctx = matrix.getContext('2d');
+  const chars = "01";
+  const fontSize = 14;
+  let columns;
+  let drops = [];
+
+  function initMatrix() {
+    matrix.width = window.innerWidth;
+    matrix.height = window.innerHeight;
+    columns = Math.floor(matrix.width / fontSize);
+    drops = [];
+    for (let i = 0; i < columns; i++) {
+      drops[i] = 1;
+    }
+  }
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, matrix.width, matrix.height);
+    ctx.fillStyle = 'var(--primary-color)';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > matrix.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  initMatrix();
+  setInterval(drawMatrix, 33);
+  window.addEventListener('resize', initMatrix);
+
+  // Saat güncellemesi
+function updateClock() {
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString();
+  const dateStr = now.toLocaleDateString();
+  document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
+}
+
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // IP ve Location fetch
+  async function updateIPAndLocation() {
+    try {
+      const response = await fetch('https://ipinfo.io/json?token=dfd9ff1b35cce9');
+      const data = await response.json();
+      document.getElementById('ip').textContent = `IP: ${data.ip}`;
+      document.getElementById('location').textContent = `LOCATION: ${data.city}, ${data.region}, ${data.country}`;
+    } catch (error) {
+      console.error('Could not fetch IP or location:', error);
+      document.getElementById('ip').textContent = `IP: Unknown`;
+      document.getElementById('location').textContent = `LOCATION: Unknown`;
+    }
+  }
+  updateIPAndLocation();
+
+  // Başlık animasyonu
+  const targetText = "evils.us";
+  const allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789.-_";
+  const titleElem = document.getElementById('animated-title');
+
+  function randomChar() {
+    return allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
+  }
+
+  function animateTitle() {
+    let index = 0;
+    let forward = true;
+
+    function frame() {
+      let displayed = "";
+      for(let i = 0; i < targetText.length; i++) {
+        if (i < index) {
+          displayed += targetText.charAt(i);
+        } else {
+          displayed += randomChar();
+        }
+      }
+      titleElem.textContent = displayed;
+
+      if (forward) {
+        index++;
+        if (index > targetText.length) {
+          forward = false;
+          setTimeout(frame, 1800);
+          return;
+        }
+      } else {
+        index--;
+        if (index < 0) {
+          forward = true;
+          setTimeout(frame, 300);
+          return;
+        }
+      }
+      setTimeout(frame, forward ? 120 : 70);
+    }
+    frame();
+  }
+
+  animateTitle();
+</script>
+</body>
 </html>
