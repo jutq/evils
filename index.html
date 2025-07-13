@@ -190,6 +190,76 @@ html, body {
     margin-left: 10px;
     font-weight: bold;
   }
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 20px 15px 60px;
+  }
+
+  #animated-title {
+    font-size: 1.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .links a,
+  .payments-button {
+    padding: 14px 18px;
+    font-size: 18px;
+    border-radius: 4px;
+  }
+
+  .payments-menu {
+    position: static;
+    margin-top: 10px;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .payments-wrapper:hover .payments-menu {
+    display: flex;
+  }
+
+  .payments-menu span {
+    user-select: text;
+    pointer-events: auto;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 16px;
+  }
+
+  p, li {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  footer {
+    font-size: 16px;
+    padding: 12px 10px;
+  }
+
+  #clock {
+    float: none;
+    margin: 10px 0 0 0;
+    display: block;
+    text-align: center;
+  }
+
+  #status-bar {
+    font-size: 16px;
+    padding: 12px 10px;
+    letter-spacing: 0.5px;
+  }
+}
+
 </style>
 </head>
 <body>
