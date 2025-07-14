@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>evils.us/shop</title>
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="files/favicon.png" />
 
 <style>
@@ -27,7 +26,6 @@
     width: 100%;
   }
 
-  /* Top bar */
   .top-bar {
     background-color: #220000;
     border-bottom: 2px solid #ff0000;
@@ -39,7 +37,7 @@
     user-select: none;
     color: #ff2222;
   }
-  /* Hakkımızda bölümü seçili metni kırmızı yap */
+  
   #aboutSection ::selection {
     background: #ff0000;
     color: #330000;
@@ -157,7 +155,6 @@
     user-select: none;
   }
 
-  /* Custom modal alert styles */
   .custom-alert {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -216,7 +213,6 @@
 
 <audio id="backgroundMusic" src="files/High Beam - Just What I Said (Everything In Its Right Place).mp3" loop></audio>
 
-<!-- Animated text -->
 <div class="top-bar" id="animatedText">evils.us/shop</div>
 
 <div class="content-wrapper">
@@ -239,15 +235,13 @@
   </div>
 
   <div class="container" id="usernames">
-    <!-- JS ile ürünler yüklenecek -->
   </div>
 </div>
 
 <footer>
-  &copy; 2025 Username Sales Site | Telegram: @usernamehere
+  &copy; 2025 | Telegram: @thring
 </footer>
 
-<!-- Custom modal alert -->
 <div id="customAlert" class="custom-alert">
   <div class="custom-alert-content">
     <p>When contacting, do not say hello, just state your request directly.</p>
@@ -256,20 +250,18 @@
 </div>
 
 <script>
-  // Ürün verisi
+
   const products = [
     { username: "@test", priceUSD: 12, tags: ["telegram"] },
   ];
 
-  // Fiyat formatlama (sabit USD)
   function formatPrice(priceUSD) {
     return `$${priceUSD.toFixed(2)}`;
   }
 
-  // Ürünleri renderla
   function renderProducts() {
     const container = document.getElementById("usernames");
-    container.innerHTML = ""; // Temizle
+    container.innerHTML = ""; 
 
     products.forEach(({ username, priceUSD, tags }) => {
       const card = document.createElement("div");
@@ -279,14 +271,13 @@
       card.innerHTML = `
         <div class="username">${username}</div>
         <div class="price">${formatPrice(priceUSD)}</div>
-        <a href="https://t.me/usernamehere" target="_blank" class="contact-btn">Contact</a>
+        <a href="https://t.me/thring" target="_blank" class="contact-btn">Contact</a>
       `;
 
       container.appendChild(card);
     });
   }
 
-  // Search filtre
   const searchInput = document.getElementById("search");
   let activeTag = null;
 
@@ -302,7 +293,6 @@
     });
   }
 
-  // Tag click eventleri
   function setupTags() {
     const tags = document.querySelectorAll(".tag");
     tags.forEach(tag => {
@@ -320,7 +310,6 @@
     });
   }
 
-  // Animated top text
   const animatedText = document.getElementById("animatedText");
   const fixedPart = "/shop";
   const originalText = "evils.us";
@@ -339,7 +328,6 @@
     animatedText.textContent = newTextArr.join("") + fixedPart;
   }, 150);
 
-  // Background music play on first click
   const music = document.getElementById("backgroundMusic");
 
   function playMusicOnce() {
@@ -353,15 +341,12 @@
 
   window.addEventListener("click", playMusicOnce);
 
-  // Custom modal alert logic
   window.addEventListener("load", () => {
     renderProducts();
     setupTags();
 
-    // Arama input olay
     searchInput.addEventListener("input", filterCards);
 
-    // Modal alert buton
     const alertBox = document.getElementById("customAlert");
     const alertBtn = document.getElementById("alertOkBtn");
     alertBtn.addEventListener("click", () => {
