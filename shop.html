@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>evils.us/shop</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png" />
+
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #100000;
+    color: #ff0000;
+    font-family: monospace, monospace;
+  }
+
+  body > .content-wrapper {
+    flex: 1 0 auto;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  /* Top bar */
+  .top-bar {
+    background-color: #220000;
+    border-bottom: 2px solid #ff0000;
+    padding: 15px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    user-select: none;
+    color: #ff2222;
+  }
+  /* Hakkımızda bölümü seçili metni kırmızı yap */
+  #aboutSection ::selection {
+    background: #ff0000;
+    color: #330000;
+  }
+
+  .section h2 {
+    font-size: 1.6rem;
+    color: #ff3333;
+    border-left: 5px solid #ff0000;
+    padding-left: 10px;
+    margin-bottom: 15px;
+  }
+
+  .section p {
+    color: #ff6666;
+    line-height: 1.5;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: monospace;
+    font-size: 1rem;
+    border: 2px solid #ff0000;
+    background-color: #220000;
+    color: #ff6666;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .search-bar input:focus {
+    border-color: #ff4444;
+    background-color: #330000;
+  }
+
+  .tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .tag {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid #ff0000;
+    background-color: transparent;
+    color: #ff4444;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .tag:hover {
+    background-color: #ff0000;
+    color: #1a0000;
+  }
+  .tag.active {
+    background-color: #ff0000;
+    color: #1a0000;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .card {
+    background-color: #220000;
+    border: 2px solid #ff0000;
+    width: 260px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    user-select: none;
+  }
+
+  .username {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #ff5555;
+  }
+
+  .price {
+    font-size: 1rem;
+    margin-bottom: 18px;
+    color: #ff8888;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 2px solid #ff0000;
+    background-color: transparent;
+    color: #ff0000;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .contact-btn:hover {
+    background-color: #ff0000;
+    color: #330000;
+  }
+
+  footer {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #ff4444;
+    border-top: 2px solid #ff0000;
+    user-select: none;
+  }
+
+  /* Custom modal alert styles */
+  .custom-alert {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(16, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-family: monospace, monospace;
+  }
+
+  .custom-alert.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .custom-alert-content {
+    background: #220000;
+    border: 2px solid #ff0000;
+    padding: 20px 30px;
+    max-width: 320px;
+    text-align: center;
+    color: #ff4444;
+    box-shadow: 0 0 10px #ff0000;
+    border-radius: 6px;
+    user-select: none;
+  }
+
+  .custom-alert-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+  }
+
+  .custom-alert-content button {
+    background: #ff0000;
+    border: none;
+    color: #330000;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-alert-content button:hover {
+    background: #ff4444;
+  }
+</style>
+</head>
+<body>
+
+<audio id="backgroundMusic" src="High Beam - Just What I Said (Everything In Its Right Place).mp3" loop></audio>
+
+<!-- Animated text -->
+<div class="top-bar" id="animatedText">evils.us/shop</div>
+
+<div class="content-wrapper">
+  <div class="section" id="aboutSection">
+    <h2>About Us</h2>
+    <p>fast. trustworthy. special</p>
+
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search username...">
+    </div>
+
+    <div class="tags">
+      <div class="tag" data-tag="telegram">#telegram</div>
+      <div class="tag" data-tag="discord">#discord</div>
+      <div class="tag" data-tag="solo.to">#solo.to</div>
+      <div class="tag" data-tag="kick">#kick</div>
+      <div class="tag" data-tag="twitch">#twitch</div>
+      <div class="tag" data-tag="instagram">#instagram</div>
+    </div>
+  </div>
+
+  <div class="container" id="usernames">
+    <!-- JS ile ürünler yüklenecek -->
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Username Sales Site | Telegram: @usernamehere
+</footer>
+
+<!-- Custom modal alert -->
+<div id="customAlert" class="custom-alert">
+  <div class="custom-alert-content">
+    <p>When contacting, do not say hello, just state your request directly.</p>
+    <button id="alertOkBtn">OK</button>
+  </div>
+</div>
+
+<script>
+  // Ürün verisi
+  const products = [
+    { username: "@test", priceUSD: 12, tags: ["telegram"] },
+  ];
+
+  // Fiyat formatlama (sabit USD)
+  function formatPrice(priceUSD) {
+    return `$${priceUSD.toFixed(2)}`;
+  }
+
+  // Ürünleri renderla
+  function renderProducts() {
+    const container = document.getElementById("usernames");
+    container.innerHTML = ""; // Temizle
+
+    products.forEach(({ username, priceUSD, tags }) => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.dataset.tags = tags.join(" ");
+
+      card.innerHTML = `
+        <div class="username">${username}</div>
+        <div class="price">${formatPrice(priceUSD)}</div>
+        <a href="https://t.me/usernamehere" target="_blank" class="contact-btn">Contact</a>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  // Search filtre
+  const searchInput = document.getElementById("search");
+  let activeTag = null;
+
+  function filterCards() {
+    const val = searchInput.value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+      const username = card.querySelector(".username").textContent.toLowerCase();
+      const tagsStr = card.dataset.tags.toLowerCase();
+      const matchesSearch = username.includes(val);
+      const matchesTag = activeTag ? tagsStr.includes(activeTag) : true;
+      card.style.display = matchesSearch && matchesTag ? "block" : "none";
+    });
+  }
+
+  // Tag click eventleri
+  function setupTags() {
+    const tags = document.querySelectorAll(".tag");
+    tags.forEach(tag => {
+      tag.addEventListener("click", () => {
+        if(activeTag === tag.dataset.tag) {
+          tag.classList.remove("active");
+          activeTag = null;
+        } else {
+          document.querySelectorAll(".tag.active").forEach(t => t.classList.remove("active"));
+          tag.classList.add("active");
+          activeTag = tag.dataset.tag;
+        }
+        filterCards();
+      });
+    });
+  }
+
+  // Animated top text
+  const animatedText = document.getElementById("animatedText");
+  const fixedPart = "/shop";
+  const originalText = "evils.us";
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789.";
+
+  function randomChar() {
+    return chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+
+  setInterval(() => {
+    let newTextArr = originalText.split("").map(c => {
+      return Math.random() < 0.5 ? c : randomChar();
+    });
+    newTextArr = newTextArr.sort(() => Math.random() - 0.5);
+
+    animatedText.textContent = newTextArr.join("") + fixedPart;
+  }, 150);
+
+  // Background music play on first click
+  const music = document.getElementById("backgroundMusic");
+
+  function playMusicOnce() {
+    music.play().catch(() => {
+      music.muted = true;
+      music.play();
+      music.muted = false;
+    });
+    window.removeEventListener("click", playMusicOnce);
+  }
+
+  window.addEventListener("click", playMusicOnce);
+
+  // Custom modal alert logic
+  window.addEventListener("load", () => {
+    renderProducts();
+    setupTags();
+
+    // Arama input olay
+    searchInput.addEventListener("input", filterCards);
+
+    // Modal alert buton
+    const alertBox = document.getElementById("customAlert");
+    const alertBtn = document.getElementById("alertOkBtn");
+    alertBtn.addEventListener("click", () => {
+      alertBox.classList.add("hidden");
+    });
+  });
+</script>
+
+</body>
+</html>
