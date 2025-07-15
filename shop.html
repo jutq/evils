@@ -251,9 +251,41 @@
 
 <script>
 
-  const products = [
-    { username: "@test", priceUSD: 12, tags: ["telegram"] },
-  ];
+const products = [
+  // Telegram
+  { username: "@bezzling", priceUSD: 12, tags: ["telegram"], url: "https://t.me/bezzling" },
+  { username: "@bombmaking", priceUSD: 12, tags: ["telegram"], url: "https://t.me/bombmaking" },
+  { username: "@fxtih", priceUSD: 12, tags: ["telegram"], url: "https://t.me/fxtih" },
+  { username: "@Hxstes", priceUSD: 12, tags: ["telegram"], url: "https://t.me/Hxstes" },
+  { username: "@WeAreHacks", priceUSD: 12, tags: ["telegram"], url: "https://t.me/WeAreHacks" },
+  { username: "@Bxzkurt", priceUSD: 12, tags: ["telegram"], url: "https://t.me/Bxzkurt" },
+
+  // Bsky
+  { username: "play2earn.bsky.social", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/play2earn.bsky.social" },
+  { username: "mpj.bsky.social", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/mpj.bsky.social" },
+  { username: "zfd.bsky.social", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/zfd.bsky.social" },
+
+  // AllMyLinks
+  { username: "oracle", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/oracle" },
+  { username: "validator", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/validator" },
+  { username: "phishing", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/phishing" },
+
+  // Twitch
+  { username: "sqjy", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/sqjy" },
+  { username: "ecds", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/ecds" },
+
+  // Kick
+  { username: "Fuyuto", priceUSD: 12, tags: ["kick"], url: "https://kick.com/Fuyuto" },
+  { username: "shunpei", priceUSD: 12, tags: ["kick"], url: "https://kick.com/shunpei" },
+
+  // GitHub
+  { username: "zucm", priceUSD: 12, tags: ["github"], url: "https://github.com/zucm" },
+  { username: "mwwp", priceUSD: 12, tags: ["github"], url: "https://github.com/mwwp" },
+
+  // SoundCloud
+  { username: "swankier", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/swankier" },
+  { username: "ROCKIEST", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/ROCKIEST" },
+];
 
   function formatPrice(priceUSD) {
     return `$${priceUSD.toFixed(2)}`;
