@@ -1,278 +1,271 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<title>evils.us</title>
-<link rel="icon" href="files/favicon.png" type="image/x-icon">
-<style>
-  :root {
-    --primary-color: #ff3c3c;
-  }
+  <meta charset="UTF-8" />
+  <title>evils.us</title>
+  <link rel="icon" href="files/favicon.png" type="image/x-icon">
+  <style>
+    :root {
+      --primary-color: #ff3c3c;
+    }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background: black;
-  overflow-x: hidden;
-  font-family: 'Courier New', Courier, monospace;
-  color: var(--primary-color);
-  position: relative;
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: black;
+      overflow-x: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--primary-color);
+      position: relative;
+    }
+
+    #matrix {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      display: block;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #title-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 10px;
+    }
+
+    #animated-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      white-space: nowrap;
+      color: var(--primary-color);
+      text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
+      letter-spacing: 0.05em;
+    }
+
+    h2.links-title {
+      text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 8px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .links a,
+    .payments-button {
+      padding: 10px 20px;
+      background-color: #1a1a1a;
+      border: 1px solid var(--primary-color);
+      color: #ff6666;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 0;
+      text-shadow: 0 0 5px var(--primary-color);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .links a:hover,
+    .payments-button:hover {
+      color: #fff;
+      background-color: #ff1a1a;
+      box-shadow: 0 0 10px var(--primary-color), 0 0 20px #ff1a1a, 0 0 30px var(--primary-color);
+      text-shadow: 0 0 8px #fff;
+    }
+
+    .payments-wrapper {
+      position: relative;
+    }
+
+    .payments-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgba(20, 20, 20, 0.95);
+      border: 1px solid var(--primary-color);
+      padding: 10px;
+      margin-top: 5px;
+      z-index: 100;
+      white-space: nowrap;
+    }
+
+    .payments-wrapper:hover .payments-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .payments-menu span {
+      display: inline-block;
+      padding: 8px 14px;
+      margin: 5px 3px;
+      background-color: #1a1a1a;
+      border: 1px solid var(--primary-color);
+      border-radius: 4px;
+      color: #ff6666;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: default;
+      text-shadow: 0 0 4px var(--primary-color);
+      box-shadow: 0 0 5px var(--primary-color);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .box {
+      background-color: rgba(20, 20, 20, 0.85);
+      border: 1px solid var(--primary-color);
+      border-radius: 0;
+      padding: 20px;
+      box-shadow: 0 0 10px var(--primary-color);
+    }
+
+    p, li {
+      text-shadow: 0 0 3px var(--primary-color);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    footer {
+      border-top: 1px solid var(--primary-color);
+      padding: 15px 0;
+      font-size: 14px;
+      color: var(--primary-color);
+      text-shadow: 0 0 5px var(--primary-color);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      margin-top: 20px;
+    }
+
+    #clock {
+      font-weight: bold;
+      float: right;
+      margin-right: 20px;
+    }
+
+    #status-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(20, 20, 20, 0.95);
+      border-top: 2px solid var(--primary-color);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      text-align: center;
+      padding: 8px 0;
+      z-index: 9999;
+      user-select: none;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px var(--primary-color);
+      color: var(--primary-color);
+    }
 
 
-  #matrix {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    display: block;
-  }
+    ::selection {
+      background: red;
+      color: black;
+    }
 
-  .container {
-    position: relative;
-    z-index: 10;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100%;
+        padding: 20px 15px 60px;
+      }
 
-  #title-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--primary-color);
-    padding-bottom: 10px;
-  }
+      #animated-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.02em;
+      }
 
-  #animated-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    white-space: nowrap;
-    color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
-    letter-spacing: 0.05em;
-  }
+      .links {
+        flex-direction: column;
+        gap: 12px;
+      }
 
-  h2.links-title {
-    text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
-    margin-bottom: 10px;
-    border-bottom: 1px solid var(--primary-color);
-    padding-bottom: 8px;
-  }
+      .links a,
+      .payments-button {
+        padding: 14px 18px;
+        font-size: 18px;
+        border-radius: 4px;
+      }
 
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
+      .payments-menu {
+        position: static;
+        margin-top: 10px;
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
 
-  .links a,
-  .payments-button {
-    padding: 10px 20px;
-    background-color: #1a1a1a;
-    border: 1px solid var(--primary-color);
-    color: #ff6666;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 0;
-    text-shadow: 0 0 5px var(--primary-color);
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
+      .payments-wrapper:hover .payments-menu {
+        display: flex;
+      }
 
-  .links a:hover,
-  .payments-button:hover {
-    color: #fff;
-    background-color: #ff1a1a;
-    box-shadow: 0 0 10px var(--primary-color), 0 0 20px #ff1a1a, 0 0 30px var(--primary-color);
-    text-shadow: 0 0 8px #fff;
-  }
+      .payments-menu span {
+        user-select: text;
+        pointer-events: auto;
+        background-color: #2a2a2a;
+        border-radius: 6px;
+        padding: 10px 16px;
+        font-size: 16px;
+      }
 
-  .payments-wrapper {
-    position: relative;
-  }
+      p, li {
+        font-size: 18px;
+        line-height: 1.8;
+      }
 
-  .payments-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgba(20, 20, 20, 0.95);
-    border: 1px solid var(--primary-color);
-    padding: 10px;
-    margin-top: 5px;
-    z-index: 100;
-    white-space: nowrap;
-  }
+      footer {
+        font-size: 16px;
+        padding: 12px 10px;
+      }
 
-  .payments-wrapper:hover .payments-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+      #clock {
+        float: none;
+        margin: 10px 0 0 0;
+        display: block;
+        text-align: center;
+      }
 
-  .payments-menu span {
-    display: inline-block;
-    padding: 8px 14px;
-    margin: 5px 3px;
-    background-color: #1a1a1a;
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
-    color: #ff6666;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: default;
-    text-shadow: 0 0 4px var(--primary-color);
-    box-shadow: 0 0 5px var(--primary-color);
-    user-select: none;
-    pointer-events: none;
-  }
-
-  .box {
-    background-color: rgba(20, 20, 20, 0.85);
-    border: 1px solid var(--primary-color);
-    border-radius: 0;
-    padding: 20px;
-    box-shadow: 0 0 10px var(--primary-color);
-  }
-
-  p, li {
-    text-shadow: 0 0 3px var(--primary-color);
-    line-height: 1.6;
-    font-size: 16px;
-  }
-
-  footer {
-    border-top: 1px solid var(--primary-color);
-    padding: 15px 0;
-    font-size: 14px;
-    color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-color);
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-    margin-top: 20px;
-  }
-
-  #clock {
-    font-weight: bold;
-    float: right;
-    margin-right: 20px;
-  }
-
-  #status-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(20, 20, 20, 0.95);
-    border-top: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    text-align: center;
-    padding: 8px 0;
-    text-shadow: 0 0 8px var(--primary-color);
-    z-index: 9999;
-    user-select: none;
-    letter-spacing: 1px;
-  }
-
-  #ip, #location {
-    display: inline-block;
-    margin-left: 10px;
-    font-weight: bold;
-  }
-  ::selection {
-  background: red;
-  color: black;
-}
-
-@media (max-width: 600px) {
-  .container {
-    max-width: 100%;
-    padding: 20px 15px 60px;
-  }
-
-  #animated-title {
-    font-size: 1.8rem;
-    letter-spacing: 0.02em;
-  }
-
-  .links {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .links a,
-  .payments-button {
-    padding: 14px 18px;
-    font-size: 18px;
-    border-radius: 4px;
-  }
-
-  .payments-menu {
-    position: static;
-    margin-top: 10px;
-    border: none;
-    background-color: transparent;
-    box-shadow: none;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .payments-wrapper:hover .payments-menu {
-    display: flex;
-  }
-
-  .payments-menu span {
-    user-select: text;
-    pointer-events: auto;
-    background-color: #2a2a2a;
-    border-radius: 6px;
-    padding: 10px 16px;
-    font-size: 16px;
-  }
-
-  p, li {
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  footer {
-    font-size: 16px;
-    padding: 12px 10px;
-  }
-
-  #clock {
-    float: none;
-    margin: 10px 0 0 0;
-    display: block;
-    text-align: center;
-  }
-
-  #status-bar {
-    font-size: 16px;
-    padding: 12px 10px;
-    letter-spacing: 0.5px;
-  }
-}
-
-</style>
+      #status-bar {
+        font-size: 16px;
+        padding: 12px 10px;
+        letter-spacing: 0.5px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <canvas id="matrix"></canvas>
 <audio id="bg-music" autoplay loop>
   <source src="files/Mr.Kitty - After Dark.mp3" type="audio/mpeg">
-  Your browser does not support audio recording.
+  Your browser does not support the audio element.
 </audio>
 
 <div class="container">
@@ -306,10 +299,17 @@ html, body {
     <p>Hello, I am a software developer. I'm interested in all kinds of code development and cyber.</p>
   </div>
 
-  <div class="box">
-    <h2>~/shop.txt</h2>
-    <p>Coming soon..</p>
-  </div>
+<div class="box">
+  <h2>~/shop.txt</h2>
+  <p>
+    Our shop is being crafted with precision and care to bring you the best tools and services in the cyber space. 
+    From exclusive digital assets to automated solutions, <strong>evils.us/shop</strong> will be your one-stop destination for quality and innovation.
+  </p>
+  <p>
+    ➜ <a href="https://evils.us/shop" target="_blank" style="color:#00ff66; text-shadow: 0 0 5px #00ff66;">https://evils.us/shop</a>
+  </p>
+</div>
+
 
   <footer>
     2025 - ∞︎︎ • Made with 𖤍 by nvn <span id="clock"></span>
@@ -317,7 +317,9 @@ html, body {
 </div>
 
 <div id="status-bar">
-  CONNECTED <span id="ip">IP: ...</span> | <span id="location">LOCATION: ...</span> | STATUS: SECURE
+  <span id="ip">IP: ...</span> |
+  <span id="location">LOCATION: ...</span> |
+  <span id="status">STATUS: <span style="color: #00ff66; text-shadow: 0 0 5px #00ff66;">SECURE</span></span>
 </div>
 
 <script>
@@ -347,11 +349,9 @@ html, body {
     for (let i = 0; i < drops.length; i++) {
       const text = chars[Math.floor(Math.random() * chars.length)];
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
       if (drops[i] * fontSize > matrix.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
-
       drops[i]++;
     }
   }
@@ -360,18 +360,16 @@ html, body {
   setInterval(drawMatrix, 33);
   window.addEventListener('resize', initMatrix);
 
-  // Saat güncellemesi
-function updateClock() {
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString();
-  const dateStr = now.toLocaleDateString();
-  document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
-}
+  function updateClock() {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString();
+    const dateStr = now.toLocaleDateString();
+    document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
+  }
 
   setInterval(updateClock, 1000);
   updateClock();
 
-  // IP ve Location fetch
   async function updateIPAndLocation() {
     try {
       const response = await fetch('https://ipinfo.io/json?token=dfd9ff1b35cce9');
@@ -379,14 +377,13 @@ function updateClock() {
       document.getElementById('ip').textContent = `IP: ${data.ip}`;
       document.getElementById('location').textContent = `LOCATION: ${data.city}, ${data.region}, ${data.country}`;
     } catch (error) {
-      console.error('Could not fetch IP or location:', error);
       document.getElementById('ip').textContent = `IP: Unknown`;
       document.getElementById('location').textContent = `LOCATION: Unknown`;
     }
   }
+
   updateIPAndLocation();
 
-  // Başlık animasyonu
   const targetText = "evils.us";
   const allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789.-_";
   const titleElem = document.getElementById('animated-title');
@@ -431,13 +428,12 @@ function updateClock() {
   }
 
   animateTitle();
-  document.body.addEventListener('click', function startMusic() {
-  const music = document.getElementById('bg-music');
-  music.play().catch(() => {
-  });
-  document.body.removeEventListener('click', startMusic);
-});
 
+  document.body.addEventListener('click', function startMusic() {
+    const music = document.getElementById('bg-music');
+    music.play().catch(() => {});
+    document.body.removeEventListener('click', startMusic);
+  });
 </script>
 </body>
 </html>
