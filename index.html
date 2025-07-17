@@ -189,75 +189,94 @@
       color: black;
     }
 
-    @media (max-width: 600px) {
-      .container {
-        max-width: 100%;
-        padding: 20px 15px 60px;
-      }
+@media (max-width: 600px) {
+  /* Container tüm genişliği kaplasın, padding küçük olsun */
+  .container {
+    max-width: 100%;
+    padding: 20px 15px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ortala içeriği */
+    text-align: center;  /* Paragraf metnini ortala */
+  }
 
-      #animated-title {
-        font-size: 1.8rem;
-        letter-spacing: 0.02em;
-      }
+  /* Başlık daha küçük ve sıkışık */
+  #animated-title {
+    font-size: 1.8rem;
+    letter-spacing: 0.02em;
+  }
 
-      .links {
-        flex-direction: column;
-        gap: 12px;
-      }
+  /* Paragraflar daha büyük ve rahat */
+  p {
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 18px !important;
+  }
 
-      .links a,
-      .payments-button {
-        padding: 14px 18px;
-        font-size: 18px;
-        border-radius: 4px;
-      }
+  .box p {
+    font-size: 20px !important;
+    line-height: 2 !important;
+  }
 
-      .payments-menu {
-        position: static;
-        margin-top: 10px;
-        border: none;
-        background-color: transparent;
-        box-shadow: none;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
+  /* Linkler ve butonlar yatay değil dikey dizilsin, büyük ve rahat */
+  .links {
+    flex-direction: column;
+    gap: 12px;
+  }
 
-      .payments-wrapper:hover .payments-menu {
-        display: flex;
-      }
+  .links a,
+  .payments-button {
+    padding: 14px 18px;
+    font-size: 18px;
+    border-radius: 4px;
+  }
 
-      .payments-menu span {
-        user-select: text;
-        pointer-events: auto;
-        background-color: #2a2a2a;
-        border-radius: 6px;
-        padding: 10px 16px;
-        font-size: 16px;
-      }
+  /* Ödeme menüsü mobilde geniş ve altına kayar */
+  .payments-menu {
+    position: static;
+    margin-top: 10px;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
 
-      p, li {
-        font-size: 18px;
-        line-height: 1.8;
-      }
+  .payments-wrapper:hover .payments-menu {
+    display: flex;
+  }
 
-      footer {
-        font-size: 16px;
-        padding: 12px 10px;
-      }
+  .payments-menu span {
+    user-select: text;
+    pointer-events: auto;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 16px;
+  }
 
-      #clock {
-        float: none;
-        margin: 10px 0 0 0;
-        display: block;
-        text-align: center;
-      }
+  /* Footer biraz büyük ve ortalı */
+  footer {
+    font-size: 16px;
+    padding: 12px 10px;
+    text-align: center;
+  }
 
-      #status-bar {
-        font-size: 16px;
-        padding: 12px 10px;
-        letter-spacing: 0.5px;
-      }
-    }
+  /* Saat kutusu ortalanmış ve alt boşluklu */
+  #clock {
+    float: none;
+    margin: 10px 0 0 0;
+    display: block;
+    text-align: center;
+  }
+
+  /* Status bar font ve padding artırılmış */
+  #status-bar {
+    font-size: 16px;
+    padding: 12px 10px;
+    letter-spacing: 0.5px;
+  }
+}
   </style>
 </head>
 <body>
