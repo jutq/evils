@@ -473,19 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   setupTags();
 
-  const animatedText = document.getElementById("animatedText");
-  const text = animatedText.textContent;
-  animatedText.textContent = "";
-  let index = 0;
-  function animateText() {
-    if (index < text.length) {
-      animatedText.textContent += text.charAt(index);
-      index++;
-      setTimeout(animateText, 100);
-    }
-  }
-  animateText();
-
   const bgMusic = document.getElementById("backgroundMusic");
   function tryPlayMusic() {
     bgMusic.play().catch(() => {
@@ -493,15 +480,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   document.body.addEventListener("click", tryPlayMusic, { once: true });
 
-  // Custom alert
   const alertDiv = document.getElementById("customAlert");
   const alertBtn = document.getElementById("alertOkBtn");
   alertBtn.addEventListener("click", () => {
     alertDiv.classList.add("hidden");
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedText = document.getElementById("animatedText");
+  const staticSuffix = "/shop";
+  const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?|";
+  const randomLength = 5; 
 
+  function getRandomPart(len) {
+    let result = "";
+    for (let i = 0; i < len; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      result += charset[randomIndex];
+    }
+    return result;
+  }
+
+  function animateLoop() {
+    const randomPrefix = getRandomPart(randomLength);
+    animatedText.textContent = randomPrefix + staticSuffix;
+  }
+
+  setInterval(animateLoop, 300); 
+});
 </script>
-
 </body>
 </html>
