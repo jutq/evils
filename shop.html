@@ -219,6 +219,18 @@
   .custom-alert-content button:hover {
     background: #ff4444;
   }
+  @media (max-width: 480px) {
+  .card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .tag {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -353,7 +365,7 @@ const products = [
 ];
 
 function formatPrice(priceUSD) {
-  return `$${priceUSD.toFixed(2)}`;
+  return $${priceUSD.toFixed(2)};
 }
 
 function getIconPathByTag(tags) {
@@ -397,14 +409,14 @@ function renderProducts() {
     const displayUsername = username.startsWith("@") ? username : "@" + username;
     const iconPath = getIconPathByTag(tags);
 
-    card.innerHTML = `
+    card.innerHTML = 
       <div class="username">
         <img src="${iconPath}" alt="${tags[0]} logo" class="icon-img" />
         <a href="${url}" target="_blank" style="color:#ff5555; text-decoration:none;">${displayUsername}</a>
       </div>
       <div class="price">${formatPrice(priceUSD)}</div>
       <a href="https://t.me/thring" target="_blank" class="contact-btn">Contact</a>
-    `;
+    ;
 
     container.appendChild(card);
   });
@@ -480,3 +492,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+bu kodda mobil uyumda sağa sola kaymayı devre dışı yap ve ortala siteyi
