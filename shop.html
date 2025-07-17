@@ -74,11 +74,13 @@
     background-color: #330000;
   }
 
-  .tags {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
+.tags {
+  display: flex;
+  flex-wrap: wrap;   /* burada eklendi */
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
 
   .tag {
     padding: 7px 14px;
@@ -121,6 +123,16 @@
     font-size: 1.3rem;
     margin-bottom: 10px;
     color: #ff5555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .icon-img {
+    width: 24px;
+    height: 24px;
+    user-select: none;
   }
 
   .price {
@@ -231,6 +243,14 @@
       <div class="tag" data-tag="kick">#kick</div>
       <div class="tag" data-tag="twitch">#twitch</div>
       <div class="tag" data-tag="instagram">#instagram</div>
+      <div class="tag" data-tag="allmylinks">#allmylinks</div>
+      <div class="tag" data-tag="bluesky">#bluesky</div>
+      <div class="tag" data-tag="tumblr">#tumblr</div>
+      <div class="tag" data-tag="last.fm">#last.fm</div>
+      <div class="tag" data-tag="guns.lol">#guns.lol</div>
+      <div class="tag" data-tag="tumblr">#tumblr</div>
+      <div class="tag" data-tag="chess">#chess</div>
+      <div class="tag" data-tag="reddit">#rediit</div>
     </div>
   </div>
 
@@ -250,7 +270,6 @@
 </div>
 
 <script>
-
 const products = [
   // Telegram
   { username: "@bezzling", priceUSD: 12, tags: ["telegram"], url: "https://t.me/bezzling" },
@@ -261,130 +280,190 @@ const products = [
   { username: "@Bxzkurt", priceUSD: 12, tags: ["telegram"], url: "https://t.me/Bxzkurt" },
 
   // Bsky
-  { username: "play2earn.bsky.social", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/play2earn.bsky.social" },
-  { username: "mpj.bsky.social", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/mpj.bsky.social" },
-  { username: "zfd.bsky.social", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/zfd.bsky.social" },
+  { username: "@play2earn", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/play2earn.bsky.social" },
+  { username: "@mpj", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/mpj.bsky.social" },
+  { username: "@zfd", priceUSD: 12, tags: ["bsky"], url: "https://bsky.app/profile/zfd.bsky.social" },
 
   // AllMyLinks
-  { username: "oracle", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/oracle" },
-  { username: "validator", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/validator" },
-  { username: "phishing", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/phishing" },
+  { username: "@oracle", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/oracle" },
+  { username: "@validator", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/validator" },
+  { username: "@phishing", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/phishing" },
+  { username: "@mining", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/mining" },
+  { username: "@100x", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/100x" },
+  { username: "@pfp", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/pfp" },
+  { username: "@fud", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/fud" },
+  { username: "@metamask", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/metamask" },
+  { username: "@force", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/force" },
+  { username: "@tsubasa", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/tsubasa" },
+  { username: "@sakurai", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/sakurai" },
+  { username: "@takeshi", priceUSD: 12, tags: ["allmylinks"], url: "https://allmylinks.com/takeshi" },
+
+  //Tumblr
+  { username: "@eoof", priceUSD: 12, tags: ["tumblr"], url: "https://tumblr.com/eoof" },
+  { username: "@x0ym", priceUSD: 12, tags: ["tumblr"], url: "https://www.tumblr.com/x0ym" },
+
+  //last.fm
+  { username: "@sgid", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/sgid" },
+  { username: "@ceuw", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/ceuw" },
+  { username: "@wwpy", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/wwpy" },
+  { username: "@zjff", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/zjff" },
+  { username: "@cxnn", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/cxnn" },
+  { username: "@offg", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/offg" },
+  { username: "@okkq", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/okkq" },
+  { username: "@cizzqxnn", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/izzq" },
+  { username: "@icqq", priceUSD: 12, tags: ["last.fm"], url: "https://www.last.fm/user/icqq" },
+
+  //guns.lol
+  { username: "@botting", priceUSD: 12, tags: ["guns.lol"], url: "https://guns.lol/botting" },
+
+  //chess
+  { username: "@zdvo", priceUSD: 12, tags: ["chess"], url: "https://www.chess.com/member/zdvo" },
+  { username: "@uafm", priceUSD: 12, tags: ["chess"], url: "https://www.chess.com/member/uafm" },
+  { username: "@qcbn", priceUSD: 12, tags: ["chess"], url: "https://www.chess.com/member/qcbn" },
+
+  //reddit
+  { username: "@ywwp", priceUSD: 12, tags: ["reddit"], url: "https://www.reddit.com/user/ywwp" },
+  { username: "@drugtrade", priceUSD: 12, tags: ["reddit"], url: "https://www.reddit.com/user/drugtrade" },
+  { username: "@ybu5ewwp", priceUSD: 12, tags: ["reddit"], url: "https://www.reddit.com/user/bu5e" },
+   { username: "@gzku", priceUSD: 12, tags: ["reddit"], url: "https://www.reddit.com/user/gzku" },
+
+  // Parler
+  { username: "@chn", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/chn" },
+  { username: "@26d", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/26d" },
+  { username: "@ere", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/ere" },
+  { username: "@jex", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/jex" },
+  { username: "@l66", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/l66" },
+  { username: "@tfo", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/tfo" },
 
   // Twitch
-  { username: "sqjy", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/sqjy" },
-  { username: "ecds", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/ecds" },
+  { username: "@sqjy", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/sqjy" },
+  { username: "@ecds", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/ecds" },
 
   // Kick
-  { username: "Fuyuto", priceUSD: 12, tags: ["kick"], url: "https://kick.com/Fuyuto" },
-  { username: "shunpei", priceUSD: 12, tags: ["kick"], url: "https://kick.com/shunpei" },
+  { username: "@fuyuto", priceUSD: 12, tags: ["kick"], url: "https://kick.com/Fuyuto" },
+  { username: "@shunpei", priceUSD: 12, tags: ["kick"], url: "https://kick.com/shunpei" },
 
   // GitHub
-  { username: "zucm", priceUSD: 12, tags: ["github"], url: "https://github.com/zucm" },
-  { username: "mwwp", priceUSD: 12, tags: ["github"], url: "https://github.com/mwwp" },
+  { username: "@zucm", priceUSD: 12, tags: ["github"], url: "https://github.com/zucm" },
+  { username: "@mwwp", priceUSD: 12, tags: ["github"], url: "https://github.com/mwwp" },
 
   // SoundCloud
-  { username: "swankier", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/swankier" },
-  { username: "ROCKIEST", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/ROCKIEST" },
+  { username: "@swankier", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/swankier" },
+  { username: "@rockiest", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/ROCKIEST" },
 ];
 
-  function formatPrice(priceUSD) {
-    return `$${priceUSD.toFixed(2)}`;
+function formatPrice(priceUSD) {
+  return `$${priceUSD.toFixed(2)}`;
+}
+
+function getIconPathByTag(tags) {
+  const tag = tags[0];
+  switch(tag) {
+    case "telegram": return "files/telegram.png";
+    case "discord": return "files/discord.png";
+    case "solo.to": return "files/soloto.png";
+    case "kick": return "files/kick.png";
+    case "twitch": return "files/twitch.png";
+    case "instagram": return "files/instagram.png";
+    case "bsky": return "files/bluesky.png";
+    case "allmylinks": return "files/allmylinks.png";
+    case "github": return "files/github.png";
+    case "soundcloud": return "files/soundcloud.png";
+    default: return "files/default.png";
   }
+}
 
-  function renderProducts() {
-    const container = document.getElementById("usernames");
-    container.innerHTML = ""; 
+function renderProducts() {
+  const container = document.getElementById("usernames");
+  container.innerHTML = "";
 
-    products.forEach(({ username, priceUSD, tags }) => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.dataset.tags = tags.join(" ");
+  products.forEach(({ username, priceUSD, tags, url }) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.dataset.tags = tags.join(" ");
 
-      card.innerHTML = `
-        <div class="username">${username}</div>
-        <div class="price">${formatPrice(priceUSD)}</div>
-        <a href="https://t.me/thring" target="_blank" class="contact-btn">Contact</a>
-      `;
+    const displayUsername = username.startsWith("@") ? username : "@" + username;
+    const iconPath = getIconPathByTag(tags);
 
-      container.appendChild(card);
-    });
-  }
+    card.innerHTML = `
+      <div class="username">
+        <img src="${iconPath}" alt="${tags[0]} logo" class="icon-img" />
+        <a href="${url}" target="_blank" style="color:#ff5555; text-decoration:none;">${displayUsername}</a>
+      </div>
+      <div class="price">${formatPrice(priceUSD)}</div>
+      <a href="https://t.me/thring" target="_blank" class="contact-btn">Contact</a>
+    `;
 
-  const searchInput = document.getElementById("search");
-  let activeTag = null;
+    container.appendChild(card);
+  });
+}
 
-  function filterCards() {
-    const val = searchInput.value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
-    cards.forEach(card => {
-      const username = card.querySelector(".username").textContent.toLowerCase();
-      const tagsStr = card.dataset.tags.toLowerCase();
-      const matchesSearch = username.includes(val);
-      const matchesTag = activeTag ? tagsStr.includes(activeTag) : true;
-      card.style.display = matchesSearch && matchesTag ? "block" : "none";
-    });
-  }
+const searchInput = document.getElementById("search");
+let activeTag = null;
 
-  function setupTags() {
-    const tags = document.querySelectorAll(".tag");
-    tags.forEach(tag => {
-      tag.addEventListener("click", () => {
-        if(activeTag === tag.dataset.tag) {
-          tag.classList.remove("active");
-          activeTag = null;
-        } else {
-          document.querySelectorAll(".tag.active").forEach(t => t.classList.remove("active"));
-          tag.classList.add("active");
-          activeTag = tag.dataset.tag;
-        }
-        filterCards();
-      });
-    });
-  }
+function filterCards() {
+  const val = searchInput.value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    const username = card.querySelector(".username").textContent.toLowerCase();
+    const tagsStr = card.dataset.tags.toLowerCase();
+    const matchesSearch = username.includes(val);
+    const matchesTag = activeTag ? tagsStr.includes(activeTag) : true;
+    card.style.display = matchesSearch && matchesTag ? "block" : "none";
+  });
+}
 
-  const animatedText = document.getElementById("animatedText");
-  const fixedPart = "/shop";
-  const originalText = "evils.us";
-  const chars = "abcdefghijklmnopqrstuvwxyz0123456789.";
-
-  function randomChar() {
-    return chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-
-  setInterval(() => {
-    let newTextArr = originalText.split("").map(c => {
-      return Math.random() < 0.5 ? c : randomChar();
-    });
-    newTextArr = newTextArr.sort(() => Math.random() - 0.5);
-
-    animatedText.textContent = newTextArr.join("") + fixedPart;
-  }, 150);
-
-  const music = document.getElementById("backgroundMusic");
-
-  function playMusicOnce() {
-    music.play().catch(() => {
-      music.muted = true;
-      music.play();
-      music.muted = false;
-    });
-    window.removeEventListener("click", playMusicOnce);
-  }
-
-  window.addEventListener("click", playMusicOnce);
-
-  window.addEventListener("load", () => {
-    renderProducts();
-    setupTags();
-
-    searchInput.addEventListener("input", filterCards);
-
-    const alertBox = document.getElementById("customAlert");
-    const alertBtn = document.getElementById("alertOkBtn");
-    alertBtn.addEventListener("click", () => {
-      alertBox.classList.add("hidden");
+function setupTags() {
+  const tags = document.querySelectorAll(".tag");
+  tags.forEach(tag => {
+    tag.addEventListener("click", () => {
+      if(activeTag === tag.dataset.tag) {
+        tag.classList.remove("active");
+        activeTag = null;
+      } else {
+        tags.forEach(t => t.classList.remove("active"));
+        tag.classList.add("active");
+        activeTag = tag.dataset.tag;
+      }
+      filterCards();
     });
   });
+}
+
+searchInput.addEventListener("input", filterCards);
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+  setupTags();
+
+  const animatedText = document.getElementById("animatedText");
+  const text = animatedText.textContent;
+  animatedText.textContent = "";
+  let index = 0;
+  function animateText() {
+    if (index < text.length) {
+      animatedText.textContent += text.charAt(index);
+      index++;
+      setTimeout(animateText, 100);
+    }
+  }
+  animateText();
+
+  const bgMusic = document.getElementById("backgroundMusic");
+  function tryPlayMusic() {
+    bgMusic.play().catch(() => {
+    });
+  }
+  document.body.addEventListener("click", tryPlayMusic, { once: true });
+
+  // Custom alert
+  const alertDiv = document.getElementById("customAlert");
+  const alertBtn = document.getElementById("alertOkBtn");
+  alertBtn.addEventListener("click", () => {
+    alertDiv.classList.add("hidden");
+  });
+});
+
 </script>
 
 </body>
