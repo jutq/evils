@@ -273,9 +273,8 @@ body > .content-wrapper {
       <div class="tag" data-tag="tumblr">#tumblr</div>
       <div class="tag" data-tag="last.fm">#last.fm</div>
       <div class="tag" data-tag="guns.lol">#guns.lol</div>
-      <div class="tag" data-tag="tumblr">#tumblr</div>
       <div class="tag" data-tag="chess">#chess</div>
-      <div class="tag" data-tag="reddit">#rediit</div>
+      <div class="tag" data-tag="reddit">#reddit</div>
     </div>
   </div>
 
@@ -296,6 +295,12 @@ body > .content-wrapper {
 
 <script>
 const products = [
+  //Discord
+  { username: "@2bff", priceUSD: 12, tags: ["discord"], url: "https://discord.com/users/1314179453013725224" },
+  { username: "@dv0y", priceUSD: 12, tags: ["discord"], url: "https://discord.com/users/1313584273059614720" },
+  { username: "@075i", priceUSD: 12, tags: ["discord"], url: "https://discord.com/users/1314179453013725224" },
+  { username: "@xsyb", priceUSD: 12, tags: ["discord"], url: "https://discord.com/users/1313588861754015834" },
+
   // Telegram
   { username: "@bezzling", priceUSD: 12, tags: ["telegram"], url: "https://t.me/bezzling" },
   { username: "@bombmaking", priceUSD: 12, tags: ["telegram"], url: "https://t.me/bombmaking" },
@@ -359,22 +364,102 @@ const products = [
   { username: "@jex", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/jex" },
   { username: "@l66", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/l66" },
   { username: "@tfo", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/tfo" },
+  { username: "@1f3", priceUSD: 12, tags: ["parler"], url: "https://app.parler.com/1f3" },
 
   // Twitch
   { username: "@sqjy", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/sqjy" },
   { username: "@ecds", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/ecds" },
+  { username: "@gyxh", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/gyxh" },
+  { username: "@uwhf", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/uwhf" },
+  { username: "@sckq", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/sckq" },
+  { username: "@cljb", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/cljb" },
+  { username: "@s5me", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/s5me" },
+  { username: "@xx4d", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/xx4d" },
+  { username: "@fw4q", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/fw4q" },
+  { username: "@9map", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/9map" },
+  { username: "@85x0", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/85x0" },
+  { username: "@l6dy", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/l6dy" },
+  { username: "@h6st", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/h6st" },
+  { username: "@vv76", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/vv76" },
+  { username: "@ubpi", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/ubpi" },
+  { username: "@661f", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/661f" },
+  { username: "@7x7h", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/7x7h" },
+  { username: "@pyds", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/pyds" },
+  { username: "@zevq", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/zevq" },
+  { username: "@88283", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/88283" },
+  { username: "@65007", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/65007" },
+  { username: "@67647", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/67647" },
+  { username: "@535n", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/535n" },
+  { username: "@8woy", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/8woy" },
+  { username: "@751z", priceUSD: 12, tags: ["twitch"], url: "https://www.twitch.tv/751z" },
+
 
   // Kick
   { username: "@fuyuto", priceUSD: 12, tags: ["kick"], url: "https://kick.com/Fuyuto" },
   { username: "@shunpei", priceUSD: 12, tags: ["kick"], url: "https://kick.com/shunpei" },
+  { username: "@nvzs", priceUSD: 12, tags: ["kick"], url: "https://kick.com/nvzs" },
+  { username: "@bxcc", priceUSD: 12, tags: ["kick"], url: "https://kick.com/bxcc" },
+  { username: "@pccz", priceUSD: 12, tags: ["kick"], url: "https://kick.com/pccz" },
+  { username: "@oxjm", priceUSD: 12, tags: ["kick"], url: "https://kick.com/oxjm" },
+  { username: "@vryb", priceUSD: 12, tags: ["kick"], url: "https://kick.com/vryb" },
+  { username: "@zqjo", priceUSD: 12, tags: ["kick"], url: "https://kick.com/zqjo" },
+  { username: "@pncu", priceUSD: 12, tags: ["kick"], url: "https://kick.com/pncu" },
+  { username: "@zzci", priceUSD: 12, tags: ["kick"], url: "https://kick.com/zzci" },
+  { username: "@uzme", priceUSD: 12, tags: ["kick"], url: "https://kick.com/uzme" },
+  { username: "@chpb", priceUSD: 12, tags: ["kick"], url: "https://kick.com/chpb" },
+  { username: "@oyyx", priceUSD: 12, tags: ["kick"], url: "https://kick.com/oyyx" },
 
   // GitHub
   { username: "@zucm", priceUSD: 12, tags: ["github"], url: "https://github.com/zucm" },
   { username: "@mwwp", priceUSD: 12, tags: ["github"], url: "https://github.com/mwwp" },
+  { username: "@766t", priceUSD: 12, tags: ["github"], url: "https://github.com/766t" },
+  { username: "@865h", priceUSD: 12, tags: ["github"], url: "https://github.com/865h" },
 
   // SoundCloud
   { username: "@swankier", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/swankier" },
   { username: "@rockiest", priceUSD: 12, tags: ["soundcloud"], url: "https://soundcloud.com/ROCKIEST" },
+
+  //Pinterest
+  { username: "@xie9", priceUSD: 12, tags: ["pinterest"], url: "https://pinterest.com/xie9" },
+  { username: "@p0sn", priceUSD: 12, tags: ["pinterest"], url: "https://pinterest.com/p0sn" },
+
+  //Linktree
+  { username: "@jiiz", priceUSD: 12, tags: ["linktree"], url: "https://linktr.ee/jiiz" },
+
+  //Links.co
+  { username: "@ltc", priceUSD: 12, tags: ["linksco"], url: "https://liinks.co/ltc" },
+  
+  //Steam Group
+  { username: "@musicale", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/musicale" },
+  { username: "@_p8", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/_p8" },
+  { username: "@licensor", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/licensor" },
+  { username: "@ty_", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/ty_" },
+  { username: "@3_8", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/3_8" },
+  { username: "@uk6", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/uk6" },
+  { username: "@ay1", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/ay1" },
+  { username: "@supertax", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/supertax" },
+  { username: "@softback", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/softback" },
+  { username: "@ritsuka", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/ritsuka" },
+  { username: "@shunpei", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/shunpei" },
+  { username: "@ryoji", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/groups/ryoji" },
+
+  //Steam ID
+    { username: "@bful", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/id/bful" },
+    { username: "@my1k", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/id/my1k" },
+    { username: "@dohp", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/id/dohp" },
+    { username: "@envt", priceUSD: 12, tags: ["steam"], url: "https://steamcommunity.com/id/envt" },
+
+  //Solo.To
+    { username: "@blocker", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/blocker" },
+    { username: "@hxx", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/hxx" },
+    { username: "@668", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/668" },
+    { username: "@umay", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/umay" },
+    { username: "@ezel", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/ezel" },
+    { username: "@244", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/244" },
+    { username: "@uns", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/uns" },
+    { username: "@chp", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/chp" },
+    { username: "@hxn", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/hxn" },
+    { username: "@990", priceUSD: 12, tags: ["soloto"], url: "https://solo.to/990" },
 ];
 
 function formatPrice(priceUSD) {
@@ -397,15 +482,13 @@ function getIconPathByTag(tags) {
     case "steam": return "files/steam.png";
     case "chess": return "files/chess.png";
     case "github": return "files/github.png";
-    case "gunslol": return "files/gunslol.png"; 
-    case "lastfm": return "files/lastfm.png"; 
+    case "guns.lol": return "files/gunslol.png"; 
+    case "last.fm": return "files/lastfm.png"; 
     case "linktree": return "files/linktree.png";  
     case "parler": return "files/parler.png"; 
     case "pinterest": return "files/pinterest.png";  
     case "tumblr": return "files/tumblr.png"; 
-    case "reddit": return "files/reddit.png"; 
-    case "lastfm": return "files/lastfm.png";  
-    case "gunslol": return "files/gunslol.png";   
+    case "reddit": return "files/reddit.png";   
     default: return "files/default.png";
   }
 }
