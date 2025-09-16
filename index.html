@@ -7,443 +7,136 @@
   <style>
     :root {
       --primary-color: #ff3c3c;
+      --secondary-color: #ff6666;
     }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      min-height: 100%;
-      background: black;
-      overflow-x: hidden;
+      background: #000;
       font-family: 'Courier New', Courier, monospace;
       color: var(--primary-color);
-      position: relative;
-    }
-
-    #matrix {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .container {
-      position: relative;
-      z-index: 10;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    #title-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-      border-bottom: 1px solid var(--primary-color);
-      padding-bottom: 10px;
+      max-width: 700px;
+      text-align: center;
+      padding: 20px;
     }
 
     #animated-title {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: bold;
-      white-space: nowrap;
+      margin-bottom: 40px;
       color: var(--primary-color);
-      text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
-      letter-spacing: 0.05em;
-    }
-
-    h2.links-title {
-      text-shadow: 0 0 5px var(--primary-color), 0 0 10px #ff1a1a;
-      margin-bottom: 10px;
-      border-bottom: 1px solid var(--primary-color);
-      padding-bottom: 8px;
+      text-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--secondary-color);
     }
 
     .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      justify-content: center;
     }
 
-    .links a,
-    .payments-button {
-      padding: 10px 20px;
-      background-color: #1a1a1a;
+    .links a {
+      display: block;
+      padding: 14px 22px;
+      background-color: #111;
       border: 1px solid var(--primary-color);
-      color: #ff6666;
+      border-radius: 6px;
+      color: var(--secondary-color);
       text-decoration: none;
       font-weight: bold;
-      border-radius: 0;
       text-shadow: 0 0 5px var(--primary-color);
       transition: all 0.3s ease;
-      cursor: pointer;
     }
 
-    .links a:hover,
-    .payments-button:hover {
+    .links a:hover {
       color: #fff;
-      background-color: #ff1a1a;
-      box-shadow: 0 0 10px var(--primary-color), 0 0 20px #ff1a1a, 0 0 30px var(--primary-color);
-      text-shadow: 0 0 8px #fff;
-    }
-
-    .payments-wrapper {
-      position: relative;
-    }
-
-    .payments-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: rgba(20, 20, 20, 0.95);
-      border: 1px solid var(--primary-color);
-      padding: 10px;
-      margin-top: 5px;
-      z-index: 100;
-      white-space: nowrap;
-    }
-
-    .payments-wrapper:hover .payments-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .payments-menu span {
-      display: inline-block;
-      padding: 8px 14px;
-      margin: 5px 3px;
-      background-color: #1a1a1a;
-      border: 1px solid var(--primary-color);
-      border-radius: 4px;
-      color: #ff6666;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: default;
-      text-shadow: 0 0 4px var(--primary-color);
-      box-shadow: 0 0 5px var(--primary-color);
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .box {
-      background-color: rgba(20, 20, 20, 0.85);
-      border: 1px solid var(--primary-color);
-      border-radius: 0;
-      padding: 20px;
-      box-shadow: 0 0 10px var(--primary-color);
-    }
-
-    p, li {
-      text-shadow: 0 0 3px var(--primary-color);
-      line-height: 1.6;
-      font-size: 16px;
+      background-color: var(--primary-color);
+      box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--secondary-color);
+      text-shadow: 0 0 10px #fff;
+      transform: translateY(-3px);
     }
 
     footer {
-      border-top: 1px solid var(--primary-color);
-      padding: 15px 0;
+      margin-top: 40px;
       font-size: 14px;
       color: var(--primary-color);
       text-shadow: 0 0 5px var(--primary-color);
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      margin-top: 20px;
     }
 
-    #clock {
-      font-weight: bold;
-      float: right;
-      margin-right: 20px;
+    @media (max-width: 500px) {
+      .links {
+        grid-template-columns: 1fr; 
+      }
     }
-
-    #status-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(20, 20, 20, 0.95);
-      border-top: 2px solid var(--primary-color);
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 14px;
-      text-align: center;
-      padding: 8px 0;
-      z-index: 9999;
-      user-select: none;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px var(--primary-color);
-      color: var(--primary-color);
-    }
-
-
-    ::selection {
-      background: red;
-      color: black;
-    }
-
-@media (max-width: 600px) {
-  .container {
-    max-width: 100%;
-    padding: 20px 15px 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  #animated-title {
-    font-size: 2.2rem;
-    letter-spacing: 0.05em;
-  }
-
-  .links {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .links a,
-  .payments-button {
-    padding: 16px 24px;  
-    font-size: 20px;      
-    border-radius: 6px;
-  }
-
-  .payments-menu {
-    position: static;
-    margin-top: 10px;
-    border: none;
-    background-color: transparent;
-    box-shadow: none;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .payments-wrapper:hover .payments-menu {
-    display: flex;
-  }
-
-  .payments-menu span {
-    user-select: text;
-    pointer-events: auto;
-    background-color: #2a2a2a;
-    border-radius: 6px;
-    padding: 12px 18px;
-    font-size: 18px;
-  }
-
-  p, li {
-    font-size: 18px;      
-    line-height: 1.8;
-  }
-
-  footer {
-    font-size: 16px;
-    padding: 12px 10px;
-  }
-
-  #clock {
-    float: none;
-    margin: 10px 0 0 0;
-    display: block;
-    text-align: center;
-  }
-
-  #status-bar {
-    font-size: 16px;
-    padding: 12px 10px;
-    letter-spacing: 0.5px;
-  }
-
-  .box p {
-    font-size: 20px !important;
-    line-height: 1.9 !important;
-  }
-}
-
   </style>
 </head>
 <body>
-
-<canvas id="matrix"></canvas>
-<audio id="bg-music" autoplay loop>
-  <source src="files/Mr.Kitty - After Dark.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<div class="container">
-  <div id="title-wrapper">
+  <div class="container">
     <h1 id="animated-title"></h1>
-  </div>
-
-  <h2 class="links-title">~/links/</h2>
-  <div class="links">
-    <a href="https://github.com/jutq" target="_blank">GitHub</a>
-    <a href="https://oguser.com/nvns" target="_blank">OGUser</a>
-    <a href="https://t.me/thring" target="_blank">Telegram</a>
-    <a href="https://discord.com/users/791591797855617055" target="_blank">Discord</a>
-    <a href="https://t.me/SuretyLink" target="_blank">Telegram Vouches</a>
-    <a href="https://t.me/s2ller" target="_blank">Stock</a>
-
-    <div class="payments-wrapper">
-      <div class="payments-button">Payments</div>
-      <div class="payments-menu">
-        <span>Bitcoin</span>
-        <span>Ethereum</span>
-        <span>Solana</span>
-        <span>USDT</span>
-        <span>Monero</span>
-      </div>
+    <div class="links">
+      <a href="https://t.me/thring" target="_blank">Telegram</a>
+      <a href="https://discord.com/users/791591797855617055" target="_blank">Discord</a>
+      <a href="https://discord.gg/9cRRZ83Htm" target="_blank">Discord Channel</a>
+      <a href="https://youtube.com/@FlawsHvH" target="_blank">YouTube</a>
     </div>
+    <footer>
+      2025 • evils.us
+    </footer>
   </div>
 
-  <div class="box">
-    <h2>~/about_me.txt</h2>
-    <p>Hello, I am a software developer. I'm interested in all kinds of code development and cyber.</p>
-  </div>
+  <script>
+    const targetText = "evils.us";
+    const allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789.-_";
+    const titleElem = document.getElementById('animated-title');
 
-<div class="box">
-  <h2>~/shop.txt</h2>
-  <p>
-    single online address.
-  </p>
-  <p>
-    ➜ <a href="https://evils.us/shop" target="_blank" style="color:#00ff66; text-shadow: 0 0 5px #00ff66;">https://evils.us/shop</a>
-  </p>
-</div>
-
-
-  <footer>
-    2025 - ∞︎︎ • Made with 𖤍 by nvn <span id="clock"></span>
-  </footer>
-</div>
-
-<div id="status-bar">
-  <span id="ip">IP: ...</span> |
-  <span id="location">LOCATION: ...</span> |
-  <span id="status">STATUS: <span style="color: #00ff66; text-shadow: 0 0 5px #00ff66;">SECURE</span></span>
-</div>
-
-<script>
-  const matrix = document.getElementById('matrix');
-  const ctx = matrix.getContext('2d');
-  const chars = "01";
-  const fontSize = 14;
-  let columns;
-  let drops = [];
-
-  function initMatrix() {
-    matrix.width = window.innerWidth;
-    matrix.height = window.innerHeight;
-    columns = Math.floor(matrix.width / fontSize);
-    drops = [];
-    for (let i = 0; i < columns; i++) {
-      drops[i] = 1;
+    function randomChar() {
+      return allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
     }
-  }
 
-  function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, matrix.width, matrix.height);
-    ctx.fillStyle = 'var(--primary-color)';
-    ctx.font = fontSize + 'px monospace';
+    function animateTitle() {
+      let index = 0;
+      let forward = true;
 
-    for (let i = 0; i < drops.length; i++) {
-      const text = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > matrix.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
+      function frame() {
+        let displayed = "";
+        for (let i = 0; i < targetText.length; i++) {
+          if (i < index) {
+            displayed += targetText.charAt(i);
+          } else {
+            displayed += randomChar();
+          }
+        }
+        titleElem.textContent = displayed;
 
-  initMatrix();
-  setInterval(drawMatrix, 33);
-  window.addEventListener('resize', initMatrix);
-
-  function updateClock() {
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString();
-    const dateStr = now.toLocaleDateString();
-    document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
-  }
-
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  async function updateIPAndLocation() {
-    try {
-      const response = await fetch('https://ipinfo.io/json?token=dfd9ff1b35cce9');
-      const data = await response.json();
-      document.getElementById('ip').textContent = `IP: ${data.ip}`;
-      document.getElementById('location').textContent = `LOCATION: ${data.city}, ${data.region}, ${data.country}`;
-    } catch (error) {
-      document.getElementById('ip').textContent = `IP: Unknown`;
-      document.getElementById('location').textContent = `LOCATION: Unknown`;
-    }
-  }
-
-  updateIPAndLocation();
-
-  const targetText = "evils.us";
-  const allowedChars = "abcdefghijklmnopqrstuvwxyz0123456789.-_";
-  const titleElem = document.getElementById('animated-title');
-
-  function randomChar() {
-    return allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
-  }
-
-  function animateTitle() {
-    let index = 0;
-    let forward = true;
-
-    function frame() {
-      let displayed = "";
-      for(let i = 0; i < targetText.length; i++) {
-        if (i < index) {
-          displayed += targetText.charAt(i);
+        if (forward) {
+          index++;
+          if (index > targetText.length) {
+            forward = false;
+            setTimeout(frame, 1800);
+            return;
+          }
         } else {
-          displayed += randomChar();
+          index--;
+          if (index < 0) {
+            forward = true;
+            setTimeout(frame, 300);
+            return;
+          }
         }
+        setTimeout(frame, forward ? 120 : 70);
       }
-      titleElem.textContent = displayed;
-
-      if (forward) {
-        index++;
-        if (index > targetText.length) {
-          forward = false;
-          setTimeout(frame, 1800);
-          return;
-        }
-      } else {
-        index--;
-        if (index < 0) {
-          forward = true;
-          setTimeout(frame, 300);
-          return;
-        }
-      }
-      setTimeout(frame, forward ? 120 : 70);
+      frame();
     }
-    frame();
-  }
 
-  animateTitle();
-
-  document.body.addEventListener('click', function startMusic() {
-    const music = document.getElementById('bg-music');
-    music.play().catch(() => {});
-    document.body.removeEventListener('click', startMusic);
-  });
-</script>
+    animateTitle();
+  </script>
 </body>
 </html>
